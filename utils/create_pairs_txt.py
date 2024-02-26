@@ -17,8 +17,8 @@ def create_pairs_txt(query_folder_path, reference_folder_path, pairs_txt_path):
                 f.write(f"{query_image} {reference_image}\n")
 
 if __name__ == '__main__':
-    query_folder_path = '../results/predict/crops/retail'
-    reference_folder_path = '../data/images_inventory'
-    pairs_txt_path = '../data/pairs.txt'
+    query_folder_path = '../results/predict/crops/retail' # Path to the cropped images
+    reference_folder_path = '../data/images_inventory' # Path to the reference images
+    pairs_txt_path = '../data/pairs.txt' # Path to save the pairs.txt file
     create_pairs_txt(query_folder_path, reference_folder_path, pairs_txt_path)
     

@@ -11,8 +11,8 @@ import os
 
 sys.path.append('../utils')
 
-from utils.SuperGluePretrainedNetwork.models.matching import Matching
-from utils.SuperGluePretrainedNetwork.models.utils import (make_matching_plot,
+from utils.SuperGlue.models.matching import Matching
+from utils.SuperGlue.models.utils import (make_matching_plot,
                                                            AverageTimer, read_image)
 
 torch.set_grad_enabled(False)
@@ -121,6 +121,7 @@ class ImageMatching:
                     'File \"{}\" needs 38 valid entries per row'.format(self.input_pairs))
         
         self.run_inference()
+        self.save_best_matches()
 
     def run_inference(self):
         for i, pair in enumerate(self.pairs):

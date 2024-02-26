@@ -1,6 +1,7 @@
 import cv2 
 from PIL import Image
 from ultralytics import YOLO
+from loguru import logger
 
 class BoundingBoxDetection:
     def __init__(self, 
@@ -23,8 +24,9 @@ class BoundingBoxDetection:
             imgsz: int - size of the image
             save_crop_images: bool - whether to save the cropped images
         """
-        self.results = self.model([image_path],  imgsz = imgsz, save_crop = save_crop_images)
-    
+        self.results = self.model([image_path],  imgsz = imgsz, save_crop = save_crop_images, project = '../results')
+        logger.success('Bounding box detection completed')
+        
     def save_results(self, 
                      save_path = '../results/bounding_box_detection.jpg') -> None:
         """

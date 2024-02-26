@@ -34,4 +34,9 @@ This will create a txt file in results folder, consisting of each cropped image 
 ### Run repository using Docker 
 
 1. docker build -t retail_store_inventory
-2. 
+2. docker run -it retail_store_inventory src/bounding_box_detection.py
+
+Follow the above steps to run the tasks in docker.
+
+TODO:
+Create a final run file. Due to time constraints could not add up everything under one run file and test it.

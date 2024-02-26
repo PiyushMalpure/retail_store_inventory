@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.cm as cm
 import torch
 import sys
+from loguru import logger
+import os
 
 sys.path.append('../utils')
 
@@ -169,8 +171,7 @@ class ImageMatching:
             image1, inp1, scales1 = read_image(
                 self.input_dir / name1, self.device, self.resize, rot1, self.resize_float)
             if image0 is None or image1 is None:
-                print('Problem reading image pair: {} {}'.format(
-                    self.input_dir/name0, self.input_dir/name1))
+                logger.error(f'Problem reading image pair: {self.input_dir/name0}, {self.input_dir/name1}')
                 exit(1)
             self.timer.update('load_image')
 
@@ -221,7 +222,18 @@ class ImageMatching:
 
             self.timer.print('Finished pair {:5} of {:5}'.format(i, len(self.pairs)))
 
-        print('Best match for each image:', self.best_match)
+        # print('Best match for each image:', self.best_match)
+
+    def get_best_matches(self):
+        return self.best_match
+    
+    def save_best_matches(self, save_path: str = None):
+        if not save_path:
+            save_path = os.path.join(self.output_dir, 'best_matches.txt')
+        with open(save_path, 'w') as f:
+            for k, v in self.best_match.items():
+                f.write(f"{k} {v}\n")
+
 
 if __name__ == '__main__':
     ImageMatching(input_pairs = '../data/pairs.txt',

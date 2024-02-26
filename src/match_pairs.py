@@ -9,11 +9,11 @@ import sys
 from loguru import logger
 import os
 
-sys.path.append('../utils')
+sys.path.append('../')
 
 from utils.SuperGlue.models.matching import Matching
 from utils.SuperGlue.models.utils import (make_matching_plot,
-                                                           AverageTimer, read_image)
+                                          AverageTimer, read_image)
 
 torch.set_grad_enabled(False)
 
@@ -230,15 +230,15 @@ class ImageMatching:
     
     def save_best_matches(self, save_path: str = None):
         if not save_path:
-            save_path = os.path.join(self.output_dir, 'best_matches.txt')
+            save_path = os.path.join(self.output_dir, 'best_matches_.txt')
         with open(save_path, 'w') as f:
             for k, v in self.best_match.items():
                 f.write(f"{k} {v}\n")
 
 
 if __name__ == '__main__':
-    ImageMatching(input_pairs = '../data/pairs.txt',
-                  input_dir = '../data',
+    ImageMatching(input_pairs = '../results/best_matches.txt',
+                  input_dir = '../data/images_inventory',
                   output_dir= '../results',
-                  viz=True
+                  viz=False
                   )

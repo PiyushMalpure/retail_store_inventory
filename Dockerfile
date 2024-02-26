@@ -9,5 +9,3 @@ COPY . /usr/src/app
 RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /usr/src/app/retail_store_inventory/src
-
-CMD ["python", "bounding_box_detection.py"]
